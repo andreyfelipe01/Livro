@@ -11,8 +11,11 @@ const Item = ({ titulo, imagem, autor, descricao }) => {
       navigation.navigate('BookDescription', { titulo, autor, descricao, imagem });
     }}>
       <View style={styles.container}>
+      
         <Image source={imagem} style={styles.imagem} />
+
         <Text style={styles.titulo}>{titulo}</Text>
+
       </View>
     </TouchableOpacity>
   );
@@ -21,17 +24,18 @@ const Item = ({ titulo, imagem, autor, descricao }) => {
 const styles = StyleSheet.create({
   container:{
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop:20
+    
   },
   imagem:{
-    width: 230,
-    height: 350,
+    height:250,
+    width:180,
+
   },
   titulo:{
+    padding:10,
     fontWeight:'bold',
-    marginTop:16,
-    fontSize:20
+
+    
   }
 });
 

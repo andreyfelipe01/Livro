@@ -13,7 +13,7 @@ import imagemLivro3 from '../img/Aventura.jpg';
 import BookList from "../components/BookList";
 
 const livros = [
-  { id: '1', titulo: 'Livro 1', autor:'irineu', descricao:'raoadwofugwdasdasssssssssssssssssssssssssssssssssssssssssssssssssssssssdpfugeadiweufhedfo', imagem: imagemLivro1 },
+  { id: '1', titulo: 'Livro 1', imagem: imagemLivro1 },
   { id: '2', titulo: 'Livro 2', imagem: imagemLivro2 },
   { id: '3', titulo: 'Livro 3', imagem: imagemLivro3 },
 ];
@@ -29,9 +29,8 @@ export default function Login({navigation}){
 
     const livrosFiltrados = livros.filter(livro => livro.titulo.toLowerCase().includes(pesquisa.toLowerCase()));
     return(
-      <ScrollView>
+
         <View >
-          
           <SafeAreaView>
             <View style={estilos.container}>
                 <View style={estilos.icones}> 
@@ -48,15 +47,14 @@ export default function Login({navigation}){
                         placeholder="Procurar" 
                         underlineColorAndroid="transparent"  
                         onChangeText={text => setPesquisa(text)}
-
-
                     />
                 </View>
-                
                 </View>
 
             </View>
+
         </SafeAreaView>
+        
             <Modal
               animationType='none'
               transparent={false}
@@ -96,21 +94,20 @@ export default function Login({navigation}){
                   <Text style={estilos.textbotao}>Entrar</Text>
                 </TouchableOpacity>
               </View>
-
+            </View>
+            </Modal>
+            <BookList books={livrosFiltrados} />
             </View>
 
-            </Modal>
-           
-            <BookList books={livrosFiltrados} />
-
-        </View>
-        </ScrollView>
+     
+        
+        
     )
 }
 
 const estilos = StyleSheet.create({
   container:{
-
+    
   },
   imagemview:{
     alignSelf:'center',
@@ -193,7 +190,8 @@ const estilos = StyleSheet.create({
       height:40,
       width:'70%',
       alignSelf:'center',
-      marginTop:10
+      marginTop:10,
+      marginBottom:20
   },
   imageStyle: {
       height: 20,

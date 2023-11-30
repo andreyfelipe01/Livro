@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Login from '../screens/Login'
 import BookDescription from '../screens/BookDescription';
+import perfil from '../screens/perfil'
+
 
 
 import { Ionicons } from '@expo/vector-icons';
@@ -32,6 +34,7 @@ function HomeStack() {
             component={BookDescription}
 
         />
+
   
       </Stack.Navigator>
     );
@@ -44,7 +47,7 @@ export function Routes () {
 
             screenOptions={{
                 tabBarActiveTintColor:'white',
-                tabBarShowLabel: true,
+                tabBarShowLabel: false,
                 headerShown: false,
                 tabBarHideOnKeyboard: true,
 
@@ -73,6 +76,21 @@ export function Routes () {
                     }
                 }}
             />
+            <Tab.Screen
+                name="Perfil"
+                component={perfil}
+                options={{
+                    headerShown: false,
+                    title:'Perfil',
+                    tabBarIcon: ({color , size , focused}) => {
+                        if(focused){
+                            return <FontAwesome name="user" size={24} color="white" />
+                        }
+                            return <FontAwesome name="user" size={24} color="black" />
+                    }
+                }}
+            />
+
         </Tab.Navigator>
     )
 }

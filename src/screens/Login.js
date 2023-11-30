@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from "react";
+import React, { useEffect , useState, useContext} from "react";
 import { Text, View, Modal, Image , StyleSheet, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -6,17 +6,25 @@ import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
-import imagemLivro1 from '../img/Aventura.jpg';
-import imagemLivro2 from '../img/Aventura.jpg';
-import imagemLivro3 from '../img/Aventura.jpg';
+import imagemLivro1 from '../img/livro1.jpg';
+import imagemLivro2 from '../img/livro2.jpg';
+import imagemLivro3 from '../img/livro3.jpg';
 
 import BookList from "../components/BookList";
+import AuthContext from "../context/contexto";
 
 const livros = [
-  { id: '1', titulo: 'Livro 1', imagem: imagemLivro1 },
-  { id: '2', titulo: 'Livro 2', imagem: imagemLivro2 },
-  { id: '3', titulo: 'Livro 3', imagem: imagemLivro3 },
+  { id: '1', titulo: 'Introdução à Informática.',autor: ' Daniel Hayashida Simão',
+   descricao:'Hoje em dia o mundo é praticamente todo informatizado. As tarefas do cotidiano, as negociações comerciais, os trabalhos e as pesquisas escolares são apenas alguns exemplos da facilidade que o uso do computador oferece. Os computadores são muito utilizados devido a sua ampla empregabilidade e seu custo acessível.'
+  , imagem: imagemLivro1 },
+  { id: '2', titulo: 'Informática: Conceitos e aplicações ',autor: '  Marcelo Marçula'
+  , descricao:'Este livro é indicado como material de apoio aos cursos de Informática e disciplinas afins dos demais cursos. Pode ser utilizado por professores (como uma diretriz básica para a disciplina), alunos (e de pesquisa para os principais conceitos) e profissionais de todas as áreas, que necessitem adquirir conhecimentos sobre informática.'
+  ,imagem: imagemLivro2 },
+  { id: '3', titulo: 'Informática de A a Z',autor: ' João Paulo Colet Orso , Luiz Rezende ',
+   descricao:'A OBRA A Obra Informática de A a Z tem como objetivo apresentar os principais tópicos de Informática e Tecnologia da Informação abordados em provas de concursos públicos, de maneira direta e objetiva, sem cometer o erro da superficialidade ou do exagero. Os primeiros capítulos abordam as concepções do mundo do Hardware e do Software, programas de escritório, editores de textos, planilhas e apresentações, sistemas operacionais, redes e segurança da informação. '
+  ,imagem: imagemLivro3 },
 ];
+
 
 export default function Login({navigation}){
     useEffect(()=>{
@@ -24,8 +32,9 @@ export default function Login({navigation}){
     },[])
 
     const [visivel, setVisivel] = useState(true);
-    const [nome,  setNome] = useState(true);
+    const [nome,  setNome] = useState('');
     const [pesquisa, setPesquisa] = useState('');
+    const {setNomeContexto} = useContext(AuthContext)
 
     const livrosFiltrados = livros.filter(livro => livro.titulo.toLowerCase().includes(pesquisa.toLowerCase()));
     return(
@@ -74,6 +83,7 @@ export default function Login({navigation}){
                   <TextInput
                     placeholder='Ex: Andrey'
                     style={estilos.input}
+                    value={nome}
                     onChangeText={setNome}
                   />
                 </View>
@@ -89,6 +99,7 @@ export default function Login({navigation}){
                     alignItems:'center',
                     
                     }})
+                    setNomeContexto(nome)
                     setVisivel(false)}}
                  >
                   <Text style={estilos.textbotao}>Entrar</Text>
